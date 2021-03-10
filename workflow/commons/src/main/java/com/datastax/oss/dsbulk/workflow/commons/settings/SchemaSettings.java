@@ -1147,11 +1147,11 @@ public class SchemaSettings {
     sb.append(" WHERE ");
     appendTokenFunction(sb);
     sb.append(" > ");
-    sb.append(":start");
+    sb.append(":ystart");
     sb.append(" AND ");
     appendTokenFunction(sb);
     sb.append(" <= ");
-    sb.append(":end");
+    sb.append(":yend");
   }
 
   private String inferCountQuery(EnumSet<StatisticsMode> modes) {

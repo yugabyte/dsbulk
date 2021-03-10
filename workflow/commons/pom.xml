@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>dsbulk-workflow</artifactId>
-    <groupId>com.datastax.oss</groupId>
+    <groupId>com.yugabyte</groupId>
     <version>1.6.0</version>
   </parent>
   <artifactId>dsbulk-workflow-commons</artifactId>
@@ -29,7 +29,7 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.datastax.oss</groupId>
+        <groupId>com.yugabyte</groupId>
         <artifactId>dsbulk-bom</artifactId>
         <version>${project.version}</version>
         <type>pom</type>
@@ -39,51 +39,51 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-workflow-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-config</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-cql</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-mapping</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-codecs-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-codecs-text</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-io</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-format</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-partitioner</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-batcher-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-executor-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>java-driver-core</artifactId>
     </dependency>
     <dependency>
@@ -145,27 +145,27 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-tests</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-connectors-csv</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-connectors-json</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-batcher-reactor</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-executor-reactor</artifactId>
       <scope>test</scope>
     </dependency>

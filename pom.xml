@@ -18,7 +18,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.datastax.oss</groupId>
+  <groupId>com.yugabyte</groupId>
   <artifactId>dsbulk-parent</artifactId>
   <version>1.6.0</version>
   <packaging>pom</packaging>
@@ -59,7 +59,9 @@
     make sure the resulting binary tarball contains only
     required jars, and that no jar has an offending license.
     -->
-    <driver.version>4.7.2</driver.version>
+    <driver.version>
+      <!--4.10.0-->4.6.0-yb-6
+    </driver.version>
     <reactive-streams.version>1.0.3</reactive-streams.version>
     <reactor.version>Dysprosium-SR9</reactor.version>
     <config.version>1.4.0</config.version>
@@ -97,18 +99,18 @@
       below are the test dependencies used by DSBulk
       -->
       <dependency>
-        <groupId>com.datastax.oss</groupId>
+        <groupId>com.yugabyte</groupId>
         <artifactId>dsbulk-tests</artifactId>
-        <version>${project.version}</version>
+        <version>1.6.0</version>
       </dependency>
       <dependency>
-        <groupId>com.datastax.oss</groupId>
+        <groupId>com.yugabyte</groupId>
         <artifactId>dsbulk-batcher-api</artifactId>
         <version>${project.version}</version>
         <type>test-jar</type>
       </dependency>
       <dependency>
-        <groupId>com.datastax.oss</groupId>
+        <groupId>com.yugabyte</groupId>
         <artifactId>dsbulk-executor-api</artifactId>
         <version>${project.version}</version>
         <type>test-jar</type>

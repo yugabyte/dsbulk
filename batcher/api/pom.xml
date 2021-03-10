@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>dsbulk-batcher</artifactId>
-    <groupId>com.datastax.oss</groupId>
+    <groupId>com.yugabyte</groupId>
     <version>1.6.0</version>
   </parent>
   <artifactId>dsbulk-batcher-api</artifactId>
@@ -29,7 +29,7 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.datastax.oss</groupId>
+        <groupId>com.yugabyte</groupId>
         <artifactId>dsbulk-bom</artifactId>
         <version>${project.version}</version>
         <type>pom</type>
@@ -39,11 +39,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>dsbulk-sampler</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>java-driver-core</artifactId>
     </dependency>
     <dependency>

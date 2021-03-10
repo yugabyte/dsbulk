@@ -65,7 +65,7 @@ public class EndToEndUtils {
 
   public static final String SELECT_FROM_IP_BY_COUNTRY =
       "SELECT * FROM ip_by_country "
-          + "WHERE token(country_code) > :start AND token(country_code) <= :end";
+          + "WHERE token(country_code) > :ystart AND token(country_code) <= :yend";
 
   public static final String IP_BY_COUNTRY_MAPPING_INDEXED =
       "0=beginning_ip_address,"

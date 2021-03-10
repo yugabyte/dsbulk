@@ -241,7 +241,7 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
 
   /**
    * @return the variable name used to define a token range start, e.g. if the restriction is {@code
-   *     token(...) > :start}, this method will report {@code start}.
+   *     token(...) > :ystart}, this method will report {@code start}.
    */
   public Optional<CQLWord> getTokenRangeRestrictionStartVariable() {
     return Optional.ofNullable(tokenRangeRestrictionStartVariable);
@@ -249,7 +249,7 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
 
   /**
    * @return the variable name used to define a token range end, e.g. if the restriction is {@code
-   *     token(...) <= :end}, this method will report {@code end}.
+   *     token(...) <= :yend}, this method will report {@code end}.
    */
   public Optional<CQLWord> getTokenRangeRestrictionEndVariable() {
     return Optional.ofNullable(tokenRangeRestrictionEndVariable);

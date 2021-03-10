@@ -467,7 +467,7 @@ public class SimulacronUtils {
         whenSelectFromTableWhere =
             new Query(
                 String.format(
-                    "SELECT %s FROM %s.%s WHERE token(%s) > :start AND token(%s) <= :end",
+                    "SELECT %s FROM %s.%s WHERE token(%s) > :ystart AND token(%s) <= :yend",
                     table.allColumns().stream().map(col -> asCql(col.name)).collect(COMMA),
                     asCql(keyspace.name),
                     asCql(table.name),

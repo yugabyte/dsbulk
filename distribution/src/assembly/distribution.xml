@@ -70,8 +70,9 @@
   </fileSets>
   <dependencySets>
     <dependencySet>
-      <outputDirectory>lib</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>lib</outputDirectory>
+      <!--<useProjectArtifact>true</useProjectArtifact>-->
       <scope>runtime</scope>
     </dependencySet>
   </dependencySets>

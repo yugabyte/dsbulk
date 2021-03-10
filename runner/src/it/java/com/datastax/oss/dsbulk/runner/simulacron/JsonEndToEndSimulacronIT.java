@@ -592,7 +592,7 @@ class JsonEndToEndSimulacronIT extends EndToEndSimulacronITBase {
     validateQueryCount(
         simulacron,
         1,
-        "SELECT pk, c1 FROM ks1.table1 WHERE token(pk) > :start AND token(pk) <= :end",
+        "SELECT pk, c1 FROM ks1.table1 WHERE token(pk) > :ystart AND token(pk) <= :yend",
         LOCAL_ONE);
     validateOutputFiles(1, unloadDir);
     Optional<String> line = FileUtils.readAllLinesInDirectoryAsStream(unloadDir).findFirst();

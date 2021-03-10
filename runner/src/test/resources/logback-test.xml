@@ -38,20 +38,20 @@
   keeping the console clean. If you need to debug some tests, you may want to
   switch to the CONSOLE appender.
   -->
-  <logger name="com.datastax.oss.dsbulk" level="${log.dsbulk.level:-INFO}" additivity="false">
+  <logger name="com.yugabyte.dsbulk" level="${log.dsbulk.level:-INFO}" additivity="false">
     <appender-ref ref="${log.dsbulk.appender:-NOP}"/>
   </logger>
-  <logger name="com.datastax.oss.driver" level="${log.driver.level:-INFO}" additivity="false">
+  <logger name="com.yugabyte.driver" level="${log.driver.level:-INFO}" additivity="false">
     <appender-ref ref="${log.driver.appender:-NOP}"/>
   </logger>
   <logger name="com.datastax.dse.driver" level="${log.driver.level:-INFO}" additivity="false">
     <appender-ref ref="${log.driver.appender:-NOP}"/>
   </logger>
   <!-- Log messages from DSBulk and driver test infrastructures -->
-  <logger name="com.datastax.oss.dsbulk.tests" level="${log.tests.level:-INFO}" additivity="false">
+  <logger name="com.yugabyte.dsbulk.tests" level="${log.tests.level:-INFO}" additivity="false">
     <appender-ref ref="${log.tests.appender:-CONSOLE}"/>
   </logger>
-  <logger name="com.datastax.oss.driver.api.testinfra" level="${log.tests.level:-INFO}" additivity="false">
+  <logger name="com.yugabyte.driver.api.testinfra" level="${log.tests.level:-INFO}" additivity="false">
     <appender-ref ref="${log.tests.appender:-CONSOLE}"/>
   </logger>
   <!-- Log messages from remote CCM processes -->

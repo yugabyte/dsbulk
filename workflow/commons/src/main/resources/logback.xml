@@ -62,9 +62,9 @@
   Do not change the loggers below; they are programmatically manipulated
   by LogSettings to apply the desired verbosity level.
   -->
-  <logger name="com.datastax.oss.dsbulk" level="INFO"/>
-  <logger name="com.datastax.oss.driver" level="WARN"/>
-  <logger name="com.datastax.dse.driver" level="WARN"/>
+  <logger name="com.yugabyte.dsbulk" level="INFO"/>
+  <logger name="com.yugabyte.driver" level="WARN"/>
+  <logger name="com.yugabyte.driver" level="WARN"/>
   <logger name="io.netty" level="WARN"/>
   <logger name="reactor.core" level="WARN"/>
 </configuration>
