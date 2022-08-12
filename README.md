@@ -30,7 +30,7 @@ most of the contents are still valid and very useful:
 
 Developers and contributors: please read our [Contribution Guidelines](./CONTRIBUTING.md).
 
-## Installing the Dsbulk 
+## Installing  Dsbulk 
 
 - Download the latest package from the [releases](https://github.com/yugabyte/dsbulk/releases).
 - Unzip the package with the help of following : 
