@@ -21,7 +21,7 @@
   <parent>
     <artifactId>dsbulk-codecs</artifactId>
     <groupId>com.yugabyte</groupId>
-    <version>1.6.0</version>
+    <version>1.6.0-yb-1</version>
   </parent>
   <artifactId>dsbulk-codecs-api</artifactId>
   <name>DataStax Bulk Loader - Codecs - API</name>

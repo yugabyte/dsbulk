@@ -21,7 +21,7 @@
   <parent>
     <artifactId>dsbulk-executor</artifactId>
     <groupId>com.yugabyte</groupId>
-    <version>1.6.0</version>
+    <version>1.6.0-yb-1</version>
   </parent>
   <artifactId>dsbulk-executor-reactor</artifactId>
   <name>DataStax Bulk Loader - Executor - Reactor</name>
