@@ -479,10 +479,11 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
         if (variable == QUESTION_MARK) {
           variable = INTERNAL_TOKEN_VARNAME;
         }
-        if (ctx.relationType().getText().equals(">")) {
+        if (ctx.relationType().getText().equals(">=") || ctx.relationType().getText().equals(">")) {
           tokenRangeRestrictionStartVariable = (CQLWord) variable;
           tokenRangeRestrictionStartVariableIndex = tokenRangeRestrictionVariableIndex++;
-        } else if (ctx.relationType().getText().equals("<=")) {
+        } else if (ctx.relationType().getText().equals("<")
+            || ctx.relationType().getText().equals("<=")) {
           tokenRangeRestrictionEndVariable = (CQLWord) variable;
           tokenRangeRestrictionEndVariableIndex = tokenRangeRestrictionVariableIndex++;
         }

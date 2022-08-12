@@ -1146,11 +1146,11 @@ public class SchemaSettings {
   private void appendTokenRangeRestriction(StringBuilder sb) {
     sb.append(" WHERE ");
     appendTokenFunction(sb);
-    sb.append(" > ");
+    sb.append(" >= ");
     sb.append(":ystart");
     sb.append(" AND ");
     appendTokenFunction(sb);
-    sb.append(" <= ");
+    sb.append(" < ");
     sb.append(":yend");
   }
 
