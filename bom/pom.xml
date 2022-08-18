@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.yugabyte</groupId>
     <artifactId>dsbulk-parent</artifactId>
-    <version>1.6.0</version>
+    <version>1.6.0-yb-2</version>
   </parent>
   <artifactId>dsbulk-bom</artifactId>
   <packaging>pom</packaging>

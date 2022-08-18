@@ -21,7 +21,7 @@
   <parent>
     <artifactId>dsbulk-batcher</artifactId>
     <groupId>com.yugabyte</groupId>
-    <version>1.6.0</version>
+    <version>1.6.0-yb-2</version>
   </parent>
   <artifactId>dsbulk-batcher-reactor</artifactId>
   <name>DataStax Bulk Loader - Batcher - Reactor</name>
