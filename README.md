@@ -30,6 +30,27 @@ most of the contents are still valid and very useful:
 
 Developers and contributors: please read our [Contribution Guidelines](./CONTRIBUTING.md).
 
+## Installing  Dsbulk 
+
+- Download the latest package from the [releases](https://github.com/yugabyte/dsbulk/releases).
+- Unzip the package with the help of following : 
+```code
+tar -xzvf <path_to_the_downloaded_package_directory>/dsbulk-1.6.0-yb-1.tar.gz
+```  
+- Export the path of the package in the `PATH` variable:
+```code
+export PATH=<path_to_unzipped_package_directory>/dsbulk-1.6.0-yb-1/bin:$PATH
+```
+- Check the Dsbulk version to verify whether the path to the `bin` directory is correctly exported:
+```code
+dsbulk --version
+```
+This should output the version you downloaded as follows
+```output
+DataStax Bulk Loader v1.6.0-yb-1
+```
+Now, you can work with dsbulk.
+
 ## Basic Usage
 
 Launch the tool with the appropriate script in the bin directory of your distribution. The help text 

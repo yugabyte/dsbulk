@@ -45,6 +45,7 @@ import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.DURA
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.FLOAT;
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.INET;
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.INT;
+import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.JSONB;
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.LIST;
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.MAP;
 import static com.datastax.oss.protocol.internal.ProtocolConstants.DataType.SET;
@@ -127,6 +128,7 @@ public class StringConvertingCodecProvider implements ConvertingCodecProvider {
     int cqlTypeCode = cqlType.getProtocolCode();
     switch (cqlTypeCode) {
       case ASCII:
+      case JSONB:
       case VARCHAR:
         TypeCodec<String> typeCodec = codecFactory.getCodecRegistry().codecFor(cqlType);
         return new StringToStringCodec(typeCodec, nullStrings);
