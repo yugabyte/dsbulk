@@ -517,7 +517,7 @@ public class SchemaSettings {
       throw new IllegalArgumentException(
           "The provided statement (schema.query) contains unrecognized WHERE restrictions; "
               + "the WHERE clause is only allowed to contain one token range restriction "
-              + "of the form: WHERE token(...) > ? AND token(...) <= ?");
+              + "of the form: WHERE token(...) >= ? AND token(...) < ?");
     }
     Metadata metadata = session.getMetadata();
     TokenRangeReadStatementGenerator generator =

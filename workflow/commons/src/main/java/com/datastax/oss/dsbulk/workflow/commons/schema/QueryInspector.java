@@ -241,7 +241,7 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
 
   /**
    * @return the variable name used to define a token range start, e.g. if the restriction is {@code
-   *     token(...) > :ystart}, this method will report {@code start}.
+   *     token(...) >= :ystart}, this method will report {@code start}.
    */
   public Optional<CQLWord> getTokenRangeRestrictionStartVariable() {
     return Optional.ofNullable(tokenRangeRestrictionStartVariable);
@@ -249,7 +249,7 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
 
   /**
    * @return the variable name used to define a token range end, e.g. if the restriction is {@code
-   *     token(...) <= :yend}, this method will report {@code end}.
+   *     token(...) < :yend}, this method will report {@code end}.
    */
   public Optional<CQLWord> getTokenRangeRestrictionEndVariable() {
     return Optional.ofNullable(tokenRangeRestrictionEndVariable);
@@ -479,11 +479,10 @@ public class QueryInspector extends CqlBaseVisitor<CQLFragment> {
         if (variable == QUESTION_MARK) {
           variable = INTERNAL_TOKEN_VARNAME;
         }
-        if (ctx.relationType().getText().equals(">=") || ctx.relationType().getText().equals(">")) {
+        if (ctx.relationType().getText().equals(">=")) {
           tokenRangeRestrictionStartVariable = (CQLWord) variable;
           tokenRangeRestrictionStartVariableIndex = tokenRangeRestrictionVariableIndex++;
-        } else if (ctx.relationType().getText().equals("<")
-            || ctx.relationType().getText().equals("<=")) {
+        } else if (ctx.relationType().getText().equals("<")) {
           tokenRangeRestrictionEndVariable = (CQLWord) variable;
           tokenRangeRestrictionEndVariableIndex = tokenRangeRestrictionVariableIndex++;
         }

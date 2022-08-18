@@ -452,7 +452,7 @@ public class SimulacronUtils {
         Query whenSelectFromTableWhere =
             new Query(
                 String.format(
-                    "SELECT %s FROM %s.%s WHERE token(%s) > ? AND token(%s) <= ?",
+                    "SELECT %s FROM %s.%s WHERE token(%s) >= ? AND token(%s) < ?",
                     table.allColumns().stream().map(col -> asCql(col.name)).collect(COMMA),
                     asCql(keyspace.name),
                     asCql(table.name),
@@ -467,7 +467,7 @@ public class SimulacronUtils {
         whenSelectFromTableWhere =
             new Query(
                 String.format(
-                    "SELECT %s FROM %s.%s WHERE token(%s) > :ystart AND token(%s) <= :yend",
+                    "SELECT %s FROM %s.%s WHERE token(%s) >= :ystart AND token(%s) < :yend",
                     table.allColumns().stream().map(col -> asCql(col.name)).collect(COMMA),
                     asCql(keyspace.name),
                     asCql(table.name),

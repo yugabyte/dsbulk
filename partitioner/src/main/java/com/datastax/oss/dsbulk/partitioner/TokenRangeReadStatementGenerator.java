@@ -55,8 +55,8 @@ public class TokenRangeReadStatementGenerator {
    * splitCount} statements.
    *
    * <p>For a given split / token range, the generated statement is a {@linkplain Statement
-   * statement} of the form: {@code SELECT col1, col2,... FROM table WHERE token(...) >
-   * [range.start()] AND token(...) <= [range.end()])}.
+   * statement} of the form: {@code SELECT col1, col2,... FROM table WHERE token(...) >=
+   * [range.start()] AND token(...) < [range.end()])}.
    *
    * <p>Note that the splitting algorithm doesn't guarantee an exact number of splits, but rather a
    * minimum number. The number of resulting statements depends on the set of primary token ranges
@@ -79,7 +79,7 @@ public class TokenRangeReadStatementGenerator {
    * <p>For each split / token range, the generated statement is a {@linkplain Statement statement}
    * resulting from applying {@code statementFactory} to the token range; statement factories should
    * typically generate a statement of the form: {@code SELECT col1, col2,... FROM table WHERE
-   * token(...) > ? AND token(...) <= ?)}. Please note that this method does not fully validate that
+   * token(...) >= ? AND token(...) < ?)}. Please note that this method does not fully validate that
    * the statements created by the factory are valid, and thus should be used with caution.
    *
    * <p>Note that the splitting algorithm doesn't guarantee an exact number of splits, but rather a
@@ -132,7 +132,7 @@ public class TokenRangeReadStatementGenerator {
             .collect(Collectors.joining(","));
     String query =
         String.format(
-            "SELECT %s FROM %s.%s WHERE token(%s) > %s AND token(%s) <= %s",
+            "SELECT %s FROM %s.%s WHERE token(%s) >= %s AND token(%s) < %s",
             all,
             table.getKeyspace().asCql(true),
             table.getName().asCql(true),
