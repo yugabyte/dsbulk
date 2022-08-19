@@ -35,11 +35,11 @@ Developers and contributors: please read our [Contribution Guidelines](./CONTRIB
 - Download the latest package from the [releases](https://github.com/yugabyte/dsbulk/releases).
 - Unzip the package with the help of following : 
 ```code
-tar -xzvf <path_to_the_downloaded_package_directory>/dsbulk-1.6.0-yb-1.tar.gz
+tar -xzvf <path_to_the_downloaded_package_directory>/dsbulk-<latest_version>.tar.gz
 ```  
 - Export the path of the package in the `PATH` variable:
 ```code
-export PATH=<path_to_unzipped_package_directory>/dsbulk-1.6.0-yb-1/bin:$PATH
+export PATH=<path_to_unzipped_package_directory>/dsbulk-<latest_version>/bin:$PATH
 ```
 - Check the Dsbulk version to verify whether the path to the `bin` directory is correctly exported:
 ```code
