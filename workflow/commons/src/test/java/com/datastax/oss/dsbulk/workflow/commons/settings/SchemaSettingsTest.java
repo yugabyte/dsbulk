@@ -761,7 +761,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), "0", C2, "2", C1);
   }
@@ -791,7 +791,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), "0", C2, "1", C1);
   }
@@ -821,7 +821,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT \"%2$s\", %1$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), C1, C1, C2, C2);
   }
@@ -852,7 +852,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %3$s, %1$s, \"%2$s\" FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT %3$s, %1$s, \"%2$s\" FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2, C3));
     assertMapping(
         (DefaultMapping) getInternalState(readResultMapper, "mapping"), C1, C1, C2, C2, C4, C3);
@@ -884,7 +884,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s, %2$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT %1$s, %2$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C3));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), C1, C1, C3, C3);
   }
@@ -915,7 +915,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend", C1));
+                "SELECT %1$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend", C1));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), C1, C1);
   }
 
@@ -942,7 +942,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "select \"%2$s\", %1$s from ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "select \"%2$s\", %1$s from ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2));
     assertMapping((DefaultMapping) getInternalState(readResultMapper, "mapping"), "0", C2, "2", C1);
   }
@@ -964,7 +964,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2, C3));
 
     assertMapping(
@@ -988,7 +988,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend",
+                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend",
                 C1, C2, C3));
     assertMapping(
         (DefaultMapping) getInternalState(readResultMapper, "mapping"), C1, C1, C2, C2, C3, C3);
@@ -1107,7 +1107,7 @@ class SchemaSettingsTest {
     schemaSettings.createReadResultMapper(session, recordMetadata, codecFactory);
     assertThat(getInternalState(schemaSettings, "query"))
         .isEqualTo(
-            "SELECT c1, now() AS \"now()\" FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+            "SELECT c1, now() AS \"now()\" FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @Test
@@ -1169,7 +1169,7 @@ class SchemaSettingsTest {
   void should_create_multiple_read_statements() {
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -1201,7 +1201,7 @@ class SchemaSettingsTest {
   void should_create_multiple_read_statements_when_token_range_provided_in_query() {
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -1225,7 +1225,7 @@ class SchemaSettingsTest {
             "keyspace",
             "ks",
             "query",
-            "\"SELECT a,b,c FROM t1 WHERE token(a) > :ystart and token(a) <= :yend \"",
+            "\"SELECT a,b,c FROM t1 WHERE token(a) >= :ystart and token(a) < :yend \"",
             "splits",
             3);
     SchemaSettings schemaSettings = new SchemaSettings(config);
@@ -1264,7 +1264,7 @@ class SchemaSettingsTest {
             "keyspace",
             "ks",
             "query",
-            "\"SELECT a,b,c FROM t1 WHERE token(a) <= ? AND token(a) > ?\"",
+            "\"SELECT a,b,c FROM t1 WHERE token(a) < ? AND token(a) >= ?\"",
             "splits",
             3);
     SchemaSettings schemaSettings = new SchemaSettings(config);
@@ -1278,7 +1278,7 @@ class SchemaSettingsTest {
   void should_create_multiple_read_statements_when_token_range_provided_in_query_for_counting() {
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -1321,7 +1321,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @ParameterizedTest
@@ -1339,7 +1339,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @ParameterizedTest
@@ -1356,7 +1356,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT token(c1) FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT token(c1) FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @ParameterizedTest
@@ -1373,7 +1373,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT token(c1) FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT token(c1) FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @ParameterizedTest
@@ -1392,7 +1392,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT c1 FROM ks.t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @Test
@@ -1443,7 +1443,7 @@ class SchemaSettingsTest {
             "keyspace",
             "ks",
             "query",
-            "\"SELECT a,b,c FROM t1 WHERE token(a) > :\\\"My Start\\\" and token(a) <= :\\\"My End\\\"\"");
+            "\"SELECT a,b,c FROM t1 WHERE token(a) >= :\\\"My Start\\\" and token(a) < :\\\"My End\\\"\"");
     SchemaSettings schemaSettings = new SchemaSettings(config);
     schemaSettings.init(SchemaGenerationType.READ_AND_MAP, session, false, true);
     schemaSettings.createReadResultMapper(session, recordMetadata, codecFactory);
@@ -1451,7 +1451,7 @@ class SchemaSettingsTest {
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
         .isEqualTo(
-            "SELECT a,b,c FROM t1 WHERE token(a) > :\"My Start\" and token(a) <= :\"My End\"");
+            "SELECT a,b,c FROM t1 WHERE token(a) >= :\"My Start\" and token(a) < :\"My End\"");
   }
 
   @Test
@@ -1473,7 +1473,7 @@ class SchemaSettingsTest {
         .hasMessage(
             "The provided statement (schema.query) contains unrecognized WHERE restrictions; "
                 + "the WHERE clause is only allowed to contain one token range restriction of the form: "
-                + "WHERE token(...) > ? AND token(...) <= ?");
+                + "WHERE token(...) >= ? AND token(...) < ?");
   }
 
   @Test
@@ -1488,7 +1488,7 @@ class SchemaSettingsTest {
             "keyspace",
             "ks",
             "query",
-            "\"SELECT a,b,c FROM t1 WHERE token(a) >= :foo and token(a) < :bar \"");
+            "\"SELECT a,b,c FROM t1 WHERE token(a) > :foo and token(a) <= :bar \"");
     SchemaSettings schemaSettings = new SchemaSettings(config);
     schemaSettings.init(SchemaGenerationType.READ_AND_MAP, session, false, true);
     schemaSettings.createReadResultMapper(session, recordMetadata, codecFactory);
@@ -1497,7 +1497,7 @@ class SchemaSettingsTest {
         .hasMessage(
             "The provided statement (schema.query) contains unrecognized WHERE restrictions; "
                 + "the WHERE clause is only allowed to contain one token range restriction of the form: "
-                + "WHERE token(...) > ? AND token(...) <= ?");
+                + "WHERE token(...) >= ? AND token(...) < ?");
   }
 
   @Test
@@ -2030,7 +2030,7 @@ class SchemaSettingsTest {
     when(context.getProtocolVersion()).thenReturn(version);
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -2059,7 +2059,7 @@ class SchemaSettingsTest {
     ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
-        .isEqualTo("SELECT a,b,c FROM t1 WHERE token(c1) > :ystart AND token(c1) <= :yend");
+        .isEqualTo("SELECT a,b,c FROM t1 WHERE token(c1) >= :ystart AND token(c1) < :yend");
   }
 
   @ParameterizedTest
@@ -2068,7 +2068,7 @@ class SchemaSettingsTest {
     when(context.getProtocolVersion()).thenReturn(version);
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -2104,7 +2104,7 @@ class SchemaSettingsTest {
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
         .isEqualTo(
-            "SELECT a,b,c FROM t1 WHERE token(c1) > :ystart AND token(c1) <= :yend ALLOW FILTERING");
+            "SELECT a,b,c FROM t1 WHERE token(c1) >= :ystart AND token(c1) < :yend ALLOW FILTERING");
   }
 
   @ParameterizedTest
@@ -2114,7 +2114,7 @@ class SchemaSettingsTest {
     when(keyspace.getTable(CqlIdentifier.fromInternal("MyTable"))).thenReturn(Optional.of(table));
     ColumnDefinitions definitions =
         mockColumnDefinitions(
-            mockColumnDefinition("start", BIGINT), mockColumnDefinition("end", BIGINT));
+            mockColumnDefinition("ystart", BIGINT), mockColumnDefinition("yend", BIGINT));
     when(ps.getVariableDefinitions()).thenReturn(definitions);
     BoundStatement bs1 = mock(BoundStatement.class);
     when(bs1.setToken(0, token1)).thenReturn(bs1);
@@ -2150,7 +2150,7 @@ class SchemaSettingsTest {
     verify(session).prepare(argument.capture());
     assertThat(argument.getValue())
         .isEqualTo(
-            "SELECT a,b,c FROM \"MyTable\" WHERE token(c1) > :ystart AND token(c1) <= :yend PER PARTITION LIMIT 1000");
+            "SELECT a,b,c FROM \"MyTable\" WHERE token(c1) >= :ystart AND token(c1) < :yend PER PARTITION LIMIT 1000");
   }
 
   @Test
@@ -2317,7 +2317,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(%1$s) > :ystart AND token(%1$s) <= :yend",
+                "SELECT %1$s, \"%2$s\", %3$s FROM ks.t1 WHERE token(%1$s) >= :ystart AND token(%1$s) < :yend",
                 C1, C2, C3));
     assertMapping((DefaultMapping) getInternalState(mapper, "mapping"), C1, C1, C2, C2, C3, C3);
   }
@@ -2345,7 +2345,7 @@ class SchemaSettingsTest {
     assertThat(argument.getValue())
         .isEqualTo(
             String.format(
-                "SELECT %1$s, \"%2$s\", %3$s, solr_query FROM ks.t1 WHERE token(%1$s) > :ystart AND token(%1$s) <= :yend",
+                "SELECT %1$s, \"%2$s\", %3$s, solr_query FROM ks.t1 WHERE token(%1$s) >= :ystart AND token(%1$s) < :yend",
                 C1, C2, C3));
     assertMapping(
         (DefaultMapping) getInternalState(mapper, "mapping"),

@@ -565,11 +565,11 @@ class QueryInspectorTest {
   static List<Arguments> should_report_named_token_range_restriction_variables() {
     return Lists.newArrayList(
         arguments(
-            "SELECT a,b,c FROM ks.t1 WHERE token(pk) > :\"begin\" AND token(pk) <= :finish", 0, 1),
+            "SELECT a,b,c FROM ks.t1 WHERE token(pk) >= :\"begin\" AND token(pk) < :finish", 0, 1),
         arguments(
-            "SELECT a,b,c FROM ks.t1 WHERE token(pk) <= :finish AND token(pk) > :\"begin\"", 1, 0),
+            "SELECT a,b,c FROM ks.t1 WHERE token(pk) < :finish AND token(pk) >= :\"begin\"", 1, 0),
         arguments(
-            "SELECT a,b,c FROM ks.t1 WHERE foo = 42 AND token(pk) <= :finish AND token(pk) > :\"begin\"",
+            "SELECT a,b,c FROM ks.t1 WHERE foo = 42 AND token(pk) < :finish AND token(pk) >= :\"begin\"",
             1,
             0));
   }
@@ -590,10 +590,10 @@ class QueryInspectorTest {
   @SuppressWarnings("unused")
   static List<Arguments> should_report_positional_token_range_restriction_variables() {
     return Lists.newArrayList(
-        arguments("SELECT a,b,c FROM ks.t1 WHERE token(pk) > ? AND token(pk) <= ?", 0, 1),
-        arguments("SELECT a,b,c FROM ks.t1 WHERE token(pk) <= ? AND token(pk) > ?", 1, 0),
+        arguments("SELECT a,b,c FROM ks.t1 WHERE token(pk) >= ? AND token(pk) < ?", 0, 1),
+        arguments("SELECT a,b,c FROM ks.t1 WHERE token(pk) < ? AND token(pk) >= ?", 1, 0),
         arguments(
-            "SELECT a,b,c FROM ks.t1 WHERE foo = 42 AND token(pk) <= ? AND token(pk) > ?", 1, 0));
+            "SELECT a,b,c FROM ks.t1 WHERE foo = 42 AND token(pk) < ? AND token(pk) >= ?", 1, 0));
   }
 
   @ParameterizedTest
